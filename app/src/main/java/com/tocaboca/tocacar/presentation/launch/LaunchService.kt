@@ -5,6 +5,8 @@ import android.content.Intent
 import android.os.Binder
 import android.os.IBinder
 import android.provider.Settings
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class LaunchService : Service() {
 
@@ -18,7 +20,7 @@ class LaunchService : Service() {
         fun getService(): LaunchService = this@LaunchService
     }
 
-    fun getAndroid(): String {
-        return Settings.Global.getString(contentResolver, Settings.Global.ADB_ENABLED)
+    suspend fun getAndroid(): String = withContext(Dispatchers.IO) {
+        return@withContext Settings.Global.getString(contentResolver, Settings.Global.ADB_ENABLED)
     }
 }

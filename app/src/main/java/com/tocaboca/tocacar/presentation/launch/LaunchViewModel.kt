@@ -1,12 +1,14 @@
 package com.tocaboca.tocacar.presentation.launch
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlin.math.log
 
 sealed interface LaunchEvent {
     class Launched(private val context: Context?) : LaunchEvent {
@@ -39,8 +41,9 @@ class LaunchViewModel : ViewModel() {
             _events.collect {
                 if (it is LaunchEvent.Launched) {
                     val service = it.getConfigurationService()
+                    val isAndroid = service?.getAndroid().toString()
 
-                    _state.emit(LaunchState.Configured(isAndroid = service?.getAndroid() ?: "1"))
+                    _state.emit(LaunchState.Configured(isAndroid = isAndroid))
                 }
             }
         }

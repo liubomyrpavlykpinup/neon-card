@@ -8,12 +8,16 @@ import android.content.ServiceConnection
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.IBinder
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.tocaboca.tocacar.openMainActivity
 import kotlinx.coroutines.launch
+import kotlin.math.log
+
+private const val TAG = "LaunchActivity"
 
 @SuppressLint("CustomSplashScreen")
 class LaunchActivity : AppCompatActivity() {
@@ -27,8 +31,8 @@ class LaunchActivity : AppCompatActivity() {
         override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
             val binder = service as LaunchService.LocalBinder
             launchService = binder.getService()
-
             viewModel.setEvent(LaunchEvent.Launched(context = launchService))
+
             bound = true
         }
 
@@ -45,7 +49,6 @@ class LaunchActivity : AppCompatActivity() {
         Intent(this, LaunchService::class.java).also { intent ->
             bindService(intent, connection, Context.BIND_AUTO_CREATE)
         }
-        viewModel.setEvent(LaunchEvent.Launched(context = launchService))
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.CREATED) {
@@ -54,7 +57,6 @@ class LaunchActivity : AppCompatActivity() {
                         LaunchState.Empty -> {}
                         is LaunchState.Configured -> {
                             openMainActivity(it.isAndroid)
-//                            openMainActivity("0")
                         }
                     }
                 }

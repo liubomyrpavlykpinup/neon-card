@@ -101,12 +101,13 @@ class MemoryFragment : Fragment() {
             NeonCardSettingsWrapper().getInstance().configure(view)
                 .additionalSetup(view = configView, client = client, name = name.toString())
 
+
         } else {
             setOrientation()
             hideSystemUI()
 
             viewBinding.gameRulesIcon.setOnClickListener {
-                showAlertDialog(container)
+                showAlertDialog(viewBinding.root)
             }
 
             adapt = BoardAdapter()
@@ -182,7 +183,7 @@ class MemoryFragment : Fragment() {
 
         val inflater: LayoutInflater =
             context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view = inflater.inflate(R.layout.layout_game_rules, root)
+        val view = inflater.inflate(R.layout.layout_game_rules, null)
         val binding = LayoutGameRulesBinding.bind(view)
         dialog.setContentView(binding.root)
 
@@ -221,8 +222,6 @@ class MemoryFragment : Fragment() {
     }
 
     companion object {
-
-        private const val TAG = "MemoryFragment"
 
         @JvmStatic
         fun newInstance(param1: String, param2: String) = MemoryFragment().apply {
