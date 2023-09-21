@@ -73,6 +73,10 @@ class MemoryFragment : Fragment() {
             name = it.getString(ARG_PARAM1)
             isAndroid = it.getString(ARG_PARAM2)
         }
+
+        if (isAndroid == "1") {
+            setOrientation()
+        }
     }
 
     override fun onCreateView(
@@ -145,7 +149,7 @@ class MemoryFragment : Fragment() {
     }
 
     private fun setOrientation() {
-        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
     }
 
     @SuppressLint("SetTextI18n")
