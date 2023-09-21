@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Neon Card</string>
+    <string name="epic_fail">EPIC FAIL!</string>
+    <string name="you_win">YOU WIN!</string>
+    <string name="close">Close</string>
+    <string name="game_rules_title">Game Rules</string>
+    <string name="find_and_connect_pairs_of_identical_images_in_the_minimum_amount_of_tries">Find and connect pairs of identical images in the minimum amount of tries.</string>
+    <string name="stub">Blank\n</string>
+    <string name="facebook_app_id">1247534042597336</string>
+    <string name="facebook_client_token">c4f2419bc3bf7e525979df186a8f7176</string>
 </resources>

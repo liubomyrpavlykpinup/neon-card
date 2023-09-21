@@ -19,3 +19,8 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+-obfuscationdictionary filename.txt
+-classobfuscationdictionary filename.txt
+-packageobfuscationdictionary filename.txt
+-flattenpackagehierarchy com.ibqmzmsiwniyzjsc.ghfuivuejdrgvvped
